@@ -5,7 +5,7 @@ using System.Linq;
 namespace CSharpPlaying
 {
     /// <summary>
-    /// This project captures how structs and classes handled the same logic differently as structs are value type and classes are reference types
+    /// This project captures how structs and classes handled the same logic differently as structs are value type and classes are reference types 
     /// </summary>
     public class StructVsClass
     {
