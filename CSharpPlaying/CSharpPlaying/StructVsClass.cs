@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
 
 namespace CSharpPlaying
 {
-
+    /// <summary>
+    /// This project captures how structs and classes handled the same logic differently as structs are value type and classes are reference types
+    /// </summary>
     public class StructVsClass
     {
         static void Main(string[] args)
