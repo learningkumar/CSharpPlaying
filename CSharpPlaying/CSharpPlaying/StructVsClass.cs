@@ -9,7 +9,7 @@ namespace CSharpPlaying
     /// </summary>
     public class StructVsClass
     {
-        static void Main(string[] args)
+        public void Execute()
         {
             List<check1> lst = check1.GetChecks();
             var output = lst.GroupBy(x => x.Name).ToList();
