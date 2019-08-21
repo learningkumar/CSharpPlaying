@@ -7,24 +7,18 @@ namespace CSharpPlaying
     {
         static void Main(string[] args)
         {
-            int x = 8;
-            Foo(x);
-            Console.WriteLine("Main value is " + x);
-
-            StringBuilder sb = new StringBuilder();
-            Foo(sb);
-            Console.WriteLine("The string is " + sb.ToString());
+           string first = "Nishet";
+            string second = "Kumar";
+            Swap(ref first,ref second);
+            Console.WriteLine(first);
+            Console.WriteLine(second);
         }
-        static void Foo(int p)
+       
+        static void Swap(ref string first, ref string second)
         {
-            p = p + 1;
-            Console.WriteLine("Foo value is " + p);
-        }
-
-        static void Foo(StringBuilder fooSB)
-        {
-            fooSB.Append("test");
-            fooSB = null;
+            string temp = first;
+            first = second;
+            second = temp;
         }
     }
 }
