@@ -1,0 +1,4 @@
+﻿//Switch statement
+You can only switch on an expression of a type that can be statically evaluated,
+which restricts it to the built-in integral types, bool, and enum types (and nullable
+versions of these), and string type.
