@@ -8,49 +8,33 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    public class Testing
+    public class Asset
     {
-        public string Name;
-        
-        public Testing() { }
-
-        /// <summary>
-        /// Use the static method Hello
-        /// </summary>
-        /// <param name="name"></param>
-        private Testing(string name)
-            {  }
-        public static  Testing Hello() { return new Testing(""); }
+        public string Name { get; set; }
     }
 
-    public class Panda
+    public class Stock:Asset
     {
-        string[] words = "This is a sentence".Split();
+        public int NumberOfShares { get; set; }
+    }
 
-        //Indexer implimentatiion
-        public string this [int wordNum]
-        {
-            get { return words[wordNum]; }
-            set { words[wordNum] = value; }
-        }
-        public int Population {  get; private set; } 
-        public Panda Mate;
-        public void Marry(Panda partner)
-        {
-            Mate = partner;
-            partner.Mate = this;
-        }
+    public class House:Asset
+    {
+        public decimal MortgageAmount { get; set; }
     }
 
     public class Programme
     {
         static void Main(string[] args)
         {
-            Panda p = new Panda();
-            p[3] = "donkey";
-            Console.WriteLine(p[3]);
+            Stock stock = new Stock() { Name = "msft", NumberOfShares = 10 };
+            House hut = new House() { Name = "Hut", MortgageAmount = 40.9M };
+            Display(stock);
+            Display(hut);
         }
-        
+        static void Display(Asset asset)
+        {
+            Console.WriteLine(asset.Name);
+        }
     }
-
 }
