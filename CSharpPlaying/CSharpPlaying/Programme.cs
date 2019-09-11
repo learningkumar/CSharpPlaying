@@ -8,46 +8,34 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    public abstract class Asset
+    public class Base
     {
-        public string Name { get; set; }
-        public virtual decimal Liability => 0;
-
-        public abstract decimal NetValue { get; }
+        public virtual void Foo() { Console.WriteLine("Inside base class"); }
     }
 
-    public class Stock : Asset
+    public class Overrider:Base
     {
-        public new string Name { get; set; }
-        public decimal CurrentPrice;
-        public int NumberOfShares { get; set; }
-        public override decimal NetValue => CurrentPrice * NumberOfShares;
-
+        public override void Foo() { Console.WriteLine("Inside Overrider class"); }
     }
 
-    public class House : Asset
+    public class Hider : Base
     {
-        public decimal CurrentPrice;
-        public decimal MortgageAmount { get; set; }
-        public override decimal Liability => MortgageAmount;
-
-        public override decimal NetValue => CurrentPrice;
-
+        public new void Foo() { Console.WriteLine("Inside Hider class"); }
     }
 
     public class Programme
     {
         static void Main(string[] args)
         {
-            Stock stock = new Stock() { Name = "msft", NumberOfShares = 10, CurrentPrice = 100 };
-            House hut = new House() { Name = "Hut", MortgageAmount = 40.9M, CurrentPrice = 200 };
+            Overrider o = new Overrider();
+            Base b1 = o;
+            o.Foo();
+            b1.Foo();
 
-            Display(stock);
-            //Display(hut);
-        }
-        static void Display(Asset asset)
-        {
-            Console.WriteLine(asset.Name);
+            Hider h = new Hider();
+            Base b2 = h;
+            h.Foo();
+            b2.Foo();
         }
     }
 }
