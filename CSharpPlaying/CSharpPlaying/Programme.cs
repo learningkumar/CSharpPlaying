@@ -8,72 +8,23 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    public  class Base
+   
+    public class Stk
     {
-        public Base()
-        {
-
-        }
-        public Base(int number)
-        {
-
-        }
-        public virtual  void Foo() { Console.WriteLine("Inside base class"); }
+        int position;
+        object[] obj = new object[10];
+        public void Push(object o) { obj[position++] = o; }
+        public object Pop() { return obj[--position]; }
     }
-
-    public class Overrider:Base
-    {
-        public Overrider()
-        {
-                
-        }
-        public  override void Foo() { Console.WriteLine("Inside Overrider class"); }
-    }
-    public class AnotherOverrider:Overrider
-    {
-        public override void Foo()
-        {
-            base.Foo();
-        }
-    }
-
-    public class Hider : Base
-    {
-        public new void Foo() {Console.WriteLine("Inside Hider class"); }
-    }
-
     public class Programme
     {
         static void Main(string[] args)
         {
-            
-            Overrider o = new Overrider();
-            Base b1 = o;
-            o.Foo();
-            b1.Foo();
-
-            Hider h = new Hider();
-            Base b2 = h;
-            meth(h);
-            meth(b2);
-            meth(o);
-            meth(b1);
-            h.Foo();
-            b2.Foo();
+            Stk s = new Stk();
+            s.Push(5);
+            s.Push(8);
+            s.Pop();
         }
-
-        static void meth(Base b)
-        {
-            b.Foo();
-        }
-
-        static void meth(Overrider b)
-        {
-            b.Foo();
-        }
-        static void meth(Hider b)
-        {
-            b.Foo();
-        }
+       
     }
 }
