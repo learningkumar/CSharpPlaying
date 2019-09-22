@@ -2,3 +2,10 @@
 You can only switch on an expression of a type that can be statically evaluated,
 which restricts it to the built-in integral types, bool, and enum types (and nullable
 versions of these), and string type.
+
+//boxing and unboxing 
+boxing is the act of coverting a value type instance to a reference type instance i.e object type or interface type 
+unboxing is the act of casting the object type to value type . Unboxing requires expliciit and exact casting i.e the follwoing will trhow error 
+object obj =9;
+long lng= (long)obj;
+rather it should be written like this long lng= (long)(int)obj; so the unboxing here is done by the (int) castint i.e the exact type casting 
