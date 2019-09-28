@@ -12,19 +12,31 @@ namespace CSharpPlaying
     {
         static void Main(string[] args)
         {
-            BorderSide b = BorderSide.Left | BorderSide.Right;
-            Console.WriteLine(b.ToString());
+            var stack = new Stk<int>();
+            stack.Push(4);
+            stack.Push(5);
+            Console.WriteLine(stack.Pop());
+
+            int a = 10;
+            int b = 20;
+            Swap(ref a, ref b);
+            Console.WriteLine(b);
             
         }
+        static void Swap<T>(ref T a, ref T b)
+        {
+            T temp = a;
+            a = b;
+            b = temp;
+        }
     }
-
-    [Flags]
-    public enum BorderSide
+    public class Stk<T>
     {
-        None=0,
-        Left = 2,
-        Right = 4,
-        Top = 8,
-        Bottom = 16
+        int position;
+        T[] obj = new T[100];
+        public void Push(T o) => obj[position++] = o;
+        public T Pop() => obj[--position];
+
+     
     }
 }
