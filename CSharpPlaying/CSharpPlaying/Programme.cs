@@ -26,7 +26,9 @@ namespace CSharpPlaying
         static void Main(string[] args)
         {
             int[] values = { 1, 2, 3 };
-            Util.Transform(values, Square);
+            Transformer t = Square;
+            t += Cube;
+            Util.Transform(values, t);
             foreach (int  i in values)
             {
                 Console.WriteLine(i+" ");
