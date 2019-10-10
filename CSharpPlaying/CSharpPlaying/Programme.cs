@@ -10,12 +10,15 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
+    
     public delegate int Transformer(int x);
     public delegate void ProgressReporter(int percentComplete);
     public class Util
     {
+        
         public static void Transform(int[] values, Transformer t)
         {
+            
             for (int i = 0; i < values.Length; i++)
             {
                 values[i] = t(values[i]);
@@ -32,8 +35,18 @@ namespace CSharpPlaying
     }
     public class Programme
     {
+        class X
+        {
+            public void InstanceProgress(int percentComplete)
+            => Console.WriteLine(percentComplete);
+        }
         static void Main(string[] args)
         {
+            X x = new X();
+            ProgressReporter p1 = x.InstanceProgress;
+            p1(99); // 99
+            Console.WriteLine(p1.Target == x); // True
+            Console.WriteLine(p1.Method); // Void InstanceProgress(Int32)
             ProgressReporter p = WriteProgressToConsole;
             p += WriteProgressToFile;
             Util.HardWork(p);
