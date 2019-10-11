@@ -9,3 +9,9 @@ unboxing is the act of casting the object type to value type . Unboxing requires
 object obj =9;
 long lng= (long)obj;
 rather it should be written like this long lng= (long)(int)obj; so the unboxing here is done by the (int) castint i.e the exact type casting 
+
+//Delegate Vs Interface
+What can be acheived by delegate can also be done by interface, So when to choose delegate over interface(if one or more of below is met)
+>when the interface has only one method
+>When multicast capability is needed
+>the subscriber need to implement the interface multiple times
