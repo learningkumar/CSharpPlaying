@@ -13,7 +13,7 @@ namespace CSharpPlaying
     public delegate T Transformer<T>(T item);
     public class Util
     {
-        public static void Transform<T>(T[] values,Transformer<T> t)
+        public static void Transform<T>(T[] values,Func<T,T> t)
         {
             for (int i = 0; i < values.Length; i++)
             {
@@ -27,6 +27,7 @@ namespace CSharpPlaying
         static void Main(string[] args)
         {
             int[] values = { 1, 2, 3 };
+
             Util.Transform(values, Square);
 
             foreach (int item in values)
