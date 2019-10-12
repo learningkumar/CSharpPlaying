@@ -10,22 +10,17 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    //Covariance in return type parameter
-    public delegate object ObjectRetriever();
-
-    //Contravariance in input parameter
-    public delegate void StringAction(string s);
     public class Programme
     {
         static void Main(string[] args)
         {
-            StringAction sa = ActionObject;
-            sa("Hello");
+            Func<string> f1 = () => "Hello World";
+            Func<object> f2 = f1;
+            Console.WriteLine(f2());
 
-            ObjectRetriever or = GetObject;
-            Console.WriteLine(or());
+            Action<object> ao = (object o) => Console.WriteLine(o);
+            Action<string> asa = ao;
+            asa("Nishet");
         }
-        static void ActionObject(object o) => Console.WriteLine(o.ToString());
-        static string GetObject() => "hello";
     }
 }
