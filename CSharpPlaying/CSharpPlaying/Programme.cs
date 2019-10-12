@@ -10,31 +10,22 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    public delegate T Transformer<T>(T item);
-    public class Util
-    {
-        public static void Transform<T>(T[] values,Func<T,T> t)
-        {
-            for (int i = 0; i < values.Length; i++)
-            {
-                values[i] = t(values[i]);
-            }
-        }
-    }
+    //Covariance in return type parameter
+    public delegate object ObjectRetriever();
 
+    //Contravariance in input parameter
+    public delegate void StringAction(string s);
     public class Programme
     {
         static void Main(string[] args)
         {
-            int[] values = { 1, 2, 3 };
+            StringAction sa = ActionObject;
+            sa("Hello");
 
-            Util.Transform(values, Square);
-
-            foreach (int item in values)
-            {
-                Console.WriteLine(item);
-            }
+            ObjectRetriever or = GetObject;
+            Console.WriteLine(or());
         }
-        public static int Square(int x) => x * x;
+        static void ActionObject(object o) => Console.WriteLine(o.ToString());
+        static string GetObject() => "hello";
     }
 }

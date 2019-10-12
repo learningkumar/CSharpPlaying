@@ -15,3 +15,7 @@ What can be acheived by delegate can also be done by interface, So when to choos
 >when the interface has only one method
 >When multicast capability is needed
 >the subscriber need to implement the interface multiple times
+
+//Equality of delegate instances 
+>two delegate are said to be equal if they have the same method targets
+>tow mulitacast delegate instances are equal if they have they have the same method targets and in the same order
