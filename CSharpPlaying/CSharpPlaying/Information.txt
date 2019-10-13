@@ -19,3 +19,10 @@ What can be acheived by delegate can also be done by interface, So when to choos
 //Equality of delegate instances 
 >two delegate are said to be equal if they have the same method targets
 >tow mulitacast delegate instances are equal if they have they have the same method targets and in the same order
+
+//Creating events as per windows standards
+>create a class that subclasses the EventArgs class. This subclass captures the information (in the form of properties or fields) needed to pass on after event is fired.
+>in the broadcaster class create an event of the EventHandler<object o, TEventArgs e> delegate . Here o is the broadcaster class and e is the above mentioned subclass instance
+>In the broadcaster class create a protected virtual method having a single parameter of above mentioned subclass type . This method name should be the same as above event name but  prefixed with 'On' 
+>call the above virtual method to fire the event .
+>the event is to fired like eventName?.invoke(this,subclass event args instance)
