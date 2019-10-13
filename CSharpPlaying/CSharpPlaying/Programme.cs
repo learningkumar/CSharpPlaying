@@ -10,17 +10,44 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
+    public delegate void PriceChangedHandler(decimal oldPrice, decimal newPrice);
+
+    public class Stock
+    {
+        string _symbol;
+        decimal _price;
+        public Stock(string Symbol)
+        {
+            _symbol = Symbol;
+        }
+        public event PriceChangedHandler PriceChanged;
+        public decimal Price
+        {
+            get { return _price; }
+            set
+            {
+                if (_price == value)
+                    return;
+                decimal oldPrice = _price;
+                _price = value;
+                if (PriceChanged != null)
+                    PriceChanged(oldPrice, _price);
+            }
+        }
+
+
+    }
     public class Programme
     {
         static void Main(string[] args)
         {
-            Func<string> f1 = () => "Hello World";
-            Func<object> f2 = f1;
-            Console.WriteLine(f2());
-
-            Action<object> ao = (object o) => Console.WriteLine(o);
-            Action<string> asa = ao;
-            asa("Nishet");
+            Stock stock = new Stock("INFY");
+            stock.PriceChanged += DisplayPrice;
+            stock.Price = 10;
+        }
+        static void DisplayPrice(decimal oldPrice , decimal newPrice)
+        {
+            Console.WriteLine($"Old price is  : {oldPrice} \n New Price is : {newPrice}");
         }
     }
 }
