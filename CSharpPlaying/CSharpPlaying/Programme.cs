@@ -56,7 +56,7 @@ namespace CSharpPlaying
         public Equity(string symbol)
         {
             _symbol = symbol;
-        }
+        }       
         public event EventHandler<PriceChangedEventArgs> PriceChanged;
         protected virtual void OnPriceChanged(PriceChangedEventArgs e)
         {
@@ -79,6 +79,9 @@ namespace CSharpPlaying
     {
         static void Main(string[] args)
         {
+            MyForm mf = new MyForm();
+            mf.ShowDialog();
+            
             //With Custom delegate/Event
             Stock stock = new Stock("INFY");
             stock.PriceChanged += DisplayPrice;
@@ -98,5 +101,14 @@ namespace CSharpPlaying
         {
             Console.WriteLine($"Old price is  : {e.oldPrice} \n New Price is : {e.newPrice}");
         }
+    }
+
+    public class class1
+    {
+        public virtual event EventHandler ev;
+    }
+    public class class2:class1
+    {
+        public override event EventHandler ev;
     }
 }
