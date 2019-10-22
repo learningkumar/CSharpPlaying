@@ -26,3 +26,11 @@ What can be acheived by delegate can also be done by interface, So when to choos
 >In the broadcaster class create a protected virtual method having a single parameter of above mentioned subclass type . This method name should be the same as above event name but  prefixed with 'On' 
 >call the above virtual method to fire the event .
 >the event is to fired like eventName?.invoke(this,subclass event args instance)
+
+Lambda expression
+>Lambda expression are unnamed methods that are written in place of delegate instance
+The compliler immedietly converts lambda expression to one of the following
+>delegate instance 
+>expression tree(representing the code inside the lambda expression as traversable object model.This allows the lambda expression to be interpretaed later at run time)
+>a lambda expression has the following form : (parameters) => expression or statement block
+>lambda expression can capture variable outside of the lambda expression such lambda expressions are called closures . The lifetime of such outer variable is till the time the  delegate that is referring that lambda expression is live.
