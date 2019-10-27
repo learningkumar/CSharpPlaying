@@ -11,17 +11,33 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    public delegate int Transformer(int i);
     public class Programme
     {
-        public delegate int Transformer(int num);
-       
-        static void Main(string[] args)
+        static int Calc(int x)
         {
-            Transformer t = delegate (int x) { return x * x; };
-            Console.WriteLine(t(8));
-          
+            try
+            {
+                return 10 / x;
+            }
+            catch 
+            {
+
+                throw;
+            }
         }
-       
+        
+    static void Main(string[] args)
+    {
+            try
+            {
+                int y = Calc(0);
+                Console.WriteLine(y);
+            }
+            catch ( ArgumentNullException e) when (e.Source=="")
+            {
+
+                throw;
+            }
     }
+}
 }
