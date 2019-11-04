@@ -34,3 +34,7 @@ The compliler immedietly converts lambda expression to one of the following
 >expression tree(representing the code inside the lambda expression as traversable object model.This allows the lambda expression to be interpretaed later at run time)
 >a lambda expression has the following form : (parameters) => expression or statement block
 >lambda expression can capture variable outside of the lambda expression such lambda expressions are called closures . The lifetime of such outer variable is till the time the  delegate that is referring that lambda expression is live.
+
+Finally block
+> The only thing that can defeat a finally block is an infinite loop or the process ending abruptly.
+

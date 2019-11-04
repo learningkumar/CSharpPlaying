@@ -2,6 +2,7 @@
 extern alias W2;//Using extern alias
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -13,31 +14,20 @@ namespace CSharpPlaying
 {
     public class Programme
     {
-        static int Calc(int x)
+        
+        static void Main(string[] args)
         {
-            try
+            foreach (char c in "beer")
             {
-                return 10 / x;
+               // Console.WriteLine(c);
             }
-            catch 
+            using(var enumerator = "beer".GetEnumerator())
             {
-
-                throw;
+                while(enumerator.MoveNext())
+                {
+                    Console.WriteLine(enumerator.Current);
+                }
             }
         }
-        
-    static void Main(string[] args)
-    {
-            try
-            {
-                int y = Calc(0);
-                Console.WriteLine(y);
-            }
-            catch ( ArgumentNullException e) when (e.Source=="")
-            {
-
-                throw;
-            }
     }
-}
 }
