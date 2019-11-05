@@ -17,16 +17,19 @@ namespace CSharpPlaying
         
         static void Main(string[] args)
         {
-            foreach (char c in "beer")
+            foreach (int fib in Fibs(3))
             {
-               // Console.WriteLine(c);
+                Console.WriteLine(fib);
             }
-            using(var enumerator = "beer".GetEnumerator())
+        }
+        static IEnumerable<int> Fibs(int FibCount)
+        {
+            for (int i = 0,prevFib=1,currFib=1; i < FibCount; i++)
             {
-                while(enumerator.MoveNext())
-                {
-                    Console.WriteLine(enumerator.Current);
-                }
+                yield return prevFib;
+                int newFib = prevFib + currFib;
+                prevFib = currFib;
+                currFib = newFib;
             }
         }
     }
