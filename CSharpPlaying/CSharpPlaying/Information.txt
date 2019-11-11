@@ -38,3 +38,6 @@ The compliler immedietly converts lambda expression to one of the following
 Finally block
 > The only thing that can defeat a finally block is an infinite loop or the process ending abruptly.
 
+Iterators
+>A yield return statement cannot be written in try block having a catch block . Also a yield written cannot be written inside a catch or finally block. These restrictions are due to the fact that the compiler must translate iterators into oridinary classes having movenext ,current and dispose methods and doing that with try/catch/finally will add super complexity. However a yield return statement can come in try/finally block.
+
