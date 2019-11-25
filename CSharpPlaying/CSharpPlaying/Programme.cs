@@ -6,30 +6,48 @@ using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
+using System.Windows.Controls;
 using static System.Console;
 
 
 
 namespace CSharpPlaying
 {
+
+    //Operator overloading
+    public struct Note
+    {
+       public int value;
+        public Note(int semiTonesFromA)
+        {
+            value = semiTonesFromA;
+        }
+        public static Note operator +(Note x, int semiTones) => new Note(x.value + semiTones);
+    }
     public class Programme
     {
-
         static void Main(string[] args)
         {
-            var sequence = Foo(false);
+            //Operator overloading
+            Note note = new Note(3);
+            Note note1 = note + 4;
 
-            IEnumerator<string> er = sequence.GetEnumerator();
-            while (er.MoveNext())
-                Console.WriteLine(er.Current);
-            foreach (string item in Foo(true))
-            {
-                Console.WriteLine(item);
-            }
-            foreach (int fib in EvenFibsOnly(Fibs(3)))
-            {
-                 Console.WriteLine(fib);
-            }
+          
+
+
+            //var sequence = Foo(false);
+
+            //IEnumerator<string> er = sequence.GetEnumerator();
+            //while (er.MoveNext())
+            //    Console.WriteLine(er.Current);
+            //foreach (string item in Foo(true))
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //foreach (int fib in EvenFibsOnly(Fibs(3)))
+            //{
+            //    Console.WriteLine(fib);
+            //}
         }
         static IEnumerable<int> Fibs(int FibCount)
         {
