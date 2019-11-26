@@ -2,6 +2,7 @@
 extern alias W2;//Using extern alias
 using System;
 using System.Collections.Generic;
+
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
@@ -14,26 +15,40 @@ using static System.Console;
 namespace CSharpPlaying
 {
 
-    //Operator overloading
-    public struct Note
-    {
-       public int value;
-        public Note(int semiTonesFromA)
-        {
-            value = semiTonesFromA;
-        }
-        public static Note operator +(Note x, int semiTones) => new Note(x.value + semiTones);
-        
-        public static implicit operator double(Note n)=> n.value+ 4.5;
-        public static explicit operator Note(double d)=>new Note((int)d);
-    }
+   
     public class Programme
     {
         static void Main(string[] args)
         {
-            Note n = new Note(3);
-            double d = n;
-            Note ng = (Note)d; 
+            SqlBoolean SQ = new SqlBoolean();
+            if(SQ)
+            Console.WriteLine(true);
+            else if(!SQ)
+                Console.WriteLine(false);
+            else
+                Console.WriteLine("null");
+
         }
+    }
+
+
+
+    public struct SqlBoolean
+    {
+        public static bool operator true(SqlBoolean x)
+        => x.m_value == True.m_value;
+        public static bool operator false(SqlBoolean x)
+        => x.m_value == False.m_value;
+        public static SqlBoolean operator !(SqlBoolean x)
+        {
+            if (x.m_value == Null.m_value) return Null;
+            if (x.m_value == False.m_value) return True;
+            return False;
+        }
+        public static readonly SqlBoolean Null = new SqlBoolean(0);
+        public static readonly SqlBoolean False = new SqlBoolean(1);
+        public static readonly SqlBoolean True = new SqlBoolean(2);
+        private SqlBoolean(byte value) { m_value = value; }
+        private byte m_value;
     }
 }
