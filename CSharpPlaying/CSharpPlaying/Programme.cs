@@ -15,40 +15,40 @@ using static System.Console;
 namespace CSharpPlaying
 {
 
-   
+    class Test
+    {
+        public void Foo(object x) { } // This method always wins
+    }
+    static class Extensions
+    {
+        public static void Foo(this Test t,int x,string f) { }
+    }
+
     public class Programme
     {
         static void Main(string[] args)
         {
-            SqlBoolean SQ = new SqlBoolean();
-            if(SQ)
-            Console.WriteLine(true);
-            else if(!SQ)
-                Console.WriteLine(false);
-            else
-                Console.WriteLine("null");
-
+          
         }
     }
-
-
-
-    public struct SqlBoolean
+    public static class Sequnce
     {
-        public static bool operator true(SqlBoolean x)
-        => x.m_value == True.m_value;
-        public static bool operator false(SqlBoolean x)
-        => x.m_value == False.m_value;
-        public static SqlBoolean operator !(SqlBoolean x)
+        public static T FirstLetter<T>(this IEnumerable<T> sequence)
         {
-            if (x.m_value == Null.m_value) return Null;
-            if (x.m_value == False.m_value) return True;
-            return False;
+            foreach (T item in sequence)
+            {
+                return item;
+            }
+            throw new InvalidOperationException("No Elements");
         }
-        public static readonly SqlBoolean Null = new SqlBoolean(0);
-        public static readonly SqlBoolean False = new SqlBoolean(1);
-        public static readonly SqlBoolean True = new SqlBoolean(2);
-        private SqlBoolean(byte value) { m_value = value; }
-        private byte m_value;
+    }
+    public static class StringHelper
+    {
+        public static bool isCaptilized(this string s,int b)
+        {
+            if (string.IsNullOrEmpty(s))
+                return false;
+            else return char.IsUpper(s[0]);
+        }
     }
 }
