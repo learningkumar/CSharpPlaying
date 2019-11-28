@@ -2,7 +2,7 @@
 extern alias W2;//Using extern alias
 using System;
 using System.Collections.Generic;
-
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
@@ -15,40 +15,23 @@ using static System.Console;
 namespace CSharpPlaying
 {
 
-    class Test
-    {
-        public void Foo(object x) { } // This method always wins
-    }
-    static class Extensions
-    {
-        public static void Foo(this Test t,int x,string f) { }
-    }
-
     public class Programme
     {
         static void Main(string[] args)
         {
-          
+            dynamic d = new Duck();
+            d.Quack();
+            d.Waddle();
         }
     }
-    public static class Sequnce
+    public class Duck:DynamicObject
     {
-        public static T FirstLetter<T>(this IEnumerable<T> sequence)
+        public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            foreach (T item in sequence)
-            {
-                return item;
-            }
-            throw new InvalidOperationException("No Elements");
+            Console.WriteLine(binder.Name+" method was called");
+            result = null;
+            return true;
         }
     }
-    public static class StringHelper
-    {
-        public static bool isCaptilized(this string s,int b)
-        {
-            if (string.IsNullOrEmpty(s))
-                return false;
-            else return char.IsUpper(s[0]);
-        }
-    }
+ 
 }
