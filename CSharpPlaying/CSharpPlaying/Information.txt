@@ -41,3 +41,5 @@ Finally block
 Iterators
 >A yield return statement cannot be written in try block having a catch block . Also a yield written cannot be written inside a catch or finally block. These restrictions are due to the fact that the compiler must translate iterators into oridinary classes having movenext ,current and dispose methods and doing that with try/catch/finally will add super complexity. However a yield return statement can come in try/finally block.
 
+Dynamic types
+> Dynamic types have implicit conversion to and from all other types.
