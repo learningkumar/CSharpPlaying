@@ -43,3 +43,7 @@ Iterators
 
 Dynamic types
 > Dynamic types have implicit conversion to and from all other types.
+
+Unsafe code
+>Though not necessarily unsafe they are called as such is becauswe there safety cannot be verified by CLR
+>only for value types pointers in C# are supported also in those value types referfcne types memebers are not allowed like a struct holding a string field

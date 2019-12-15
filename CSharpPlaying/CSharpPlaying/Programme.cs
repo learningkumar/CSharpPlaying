@@ -21,18 +21,18 @@ namespace CSharpPlaying
     {
         void Foo();
     }
-    public class Test:IFoo
+    public class Test : IFoo
     {
-         void IFoo.Foo() { }
+        void IFoo.Foo() { }
     }
     public class Foo : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged=delegate { };
-        void RaiseOnPropertyChanged([CallerMemberName]string propertyName=null)
+        public event PropertyChangedEventHandler PropertyChanged = delegate { };
+        void RaiseOnPropertyChanged([CallerMemberName]string propertyName = null)
         {
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
-        string customerName;    
+        string customerName;
         public string CustomerName
         {
             get { return customerName; }
@@ -49,27 +49,4 @@ namespace CSharpPlaying
         }
 
     }
-
-
-
-    public class Programme
-    {
-        
-        private int v;
-        static void Main(string[] args)
-        {
-            Foo();
-            INotifyPropertyChanged
-        }
-        static void Foo([CallerMemberName]string memberName=null,[CallerFilePath]string filePath = null,[CallerLineNumber]int lineNumber=0)
-        {
-            Console.WriteLine(memberName);
-            Console.WriteLine(filePath);
-            Console.WriteLine(lineNumber);
-        }
-        
-        static dynamic Mean(dynamic x, dynamic y) => (x + y) / 2;
-    }
-
-
 }
