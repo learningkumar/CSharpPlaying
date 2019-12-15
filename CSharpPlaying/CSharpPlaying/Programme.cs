@@ -17,36 +17,68 @@ using static System.Console;
 
 namespace CSharpPlaying
 {
-    public interface IFoo
+    public struct Demo
     {
-        void Foo();
+        public int M, N;
     }
-    public class Test : IFoo
+    public class Programme
     {
-        void IFoo.Foo() { }
-    }
-    public class Foo : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged = delegate { };
-        void RaiseOnPropertyChanged([CallerMemberName]string propertyName = null)
+
+        // pn is a pointer to integer type
+        static unsafe void Square(int* pn)
         {
-            PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            *pn = *(pn) * *pn;
         }
-        string customerName;
-        public string CustomerName
+        static void Main(string[] args)
         {
-            get { return customerName; }
-            set
+            int n = 10;
+            unsafe
             {
-                if (value == customerName) return;
-                else
+                Square(&n);
+            }
+            Console.WriteLine(n);
+
+            int[] ar = { 1, 2, 3, 4 };
+            unsafe
+            {
+
+                fixed (int* par = ar)
                 {
-                    customerName = value;
-                    RaiseOnPropertyChanged();
+                    PrintArray(par, ar.Length);
+
                 }
 
+                //Another way of initialising stack
+                int* arr = stackalloc int[10];
+                Console.WriteLine(arr[8]);
             }
+
+            //Struct pointers demo
+            Demo d;
+            d.M = 9;
+            d.N = 4;
+            unsafe
+            {
+                PrintDemo(&d);
+            }
+
         }
 
+
+        //pointers with struct
+        static unsafe void PrintDemo(Demo* demo)
+        {
+            Console.WriteLine((*demo).N + " " + (*demo).M);
+            Console.WriteLine(demo->N + " " + demo->M);
+        }
+
+        //for array pointers one needs to pass the lenth also with the array's first element address
+        static unsafe void PrintArray(int* par, int len)
+        {
+            for (int i = 0; i < len; i++)
+            {
+                Console.WriteLine(*(par + i) + " " + par[i]);
+            }
+        }
     }
 }
